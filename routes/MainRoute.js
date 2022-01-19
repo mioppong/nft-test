@@ -13,7 +13,7 @@ const Tabs = () => (
   <Tab.Navigator>
     <Tab.Screen
       component={HomeScreen}
-      options={{ title: "Explore" }}
+      options={{ headerTitle: "Explore NFT Collections" }}
       name="Home"
     />
     <Tab.Screen component={Profile} name="Profile" />
