@@ -27,9 +27,7 @@ class HomeScreen extends Component {
     ) : (
       <View style={styles.container}>
         <FlatList
-          keyExtractor={(item) => {
-            item.collectionDict.id;
-          }}
+          keyExtractor={(item) => item.collectionDict.id}
           showsVerticalScrollIndicator={false}
           data={homeStore.collections}
           key={(item) => item.collectionDict.id}

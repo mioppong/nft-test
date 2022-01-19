@@ -7,7 +7,9 @@ export const getData = (payload) => async (dispatch) => {
 
   const { displayName, page } = payload;
 
-  const url = `${config.nfts}startInclusive=${0}&endExclusive=${25}&nft_filter_string={"collection":"${displayName}"}`;
+  const url = `${
+    config.nfts
+  }startInclusive=${0}&endExclusive=${25}&nft_filter_string={"collection":"${displayName}"}`;
   const response = await axios.get(url).catch((err) => {
     return dispatch({ type: types.GET_DATA_FAILURE });
   });
@@ -26,10 +28,17 @@ export const getDataCollections = (payload) => async (dispatch) => {
   const response = await axios.get(url).catch((err) => {
     return dispatch({ type: types.GET_DATA_FAILURE });
   });
+  const { collections } = response.data.result;
 
+  // no duplicates
+  const noDups = collections.filter(
+    (value, index, self) =>
+      index ===
+      self.findIndex((t) => t.collectionDict.id === value.collectionDict.id)
+  );
   dispatch({
     type: types.GET_COLLECTIONS_SUCCESS,
-    payload: response.data.result.collections,
+    payload: noDups,
   });
 };
 export const logout = () => async (dispatch) => {
