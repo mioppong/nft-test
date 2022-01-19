@@ -10,7 +10,6 @@ import {
 
 const Card = (props) => {
   const { item } = props;
-  const [modalVisible, setModalVisible] = useState(false);
   return (
     <>
       <TouchableOpacity
@@ -30,9 +29,6 @@ const Card = (props) => {
           <Text style={styles.sideText}>{item.item.hasOwner}</Text>
         </View>
       </TouchableOpacity>
-      <Modal visible={modalVisible}>
-        <View style={styles.modalContainer}></View>
-      </Modal>
     </>
   );
 };
