@@ -6,15 +6,17 @@ import {
   Modal,
   Image,
   TouchableOpacity,
+  Button,
 } from "react-native";
 
 const Card = (props) => {
   const { item } = props;
+  const [modalVisible, setModalVisible] = useState(false);
   return (
     <>
       <TouchableOpacity
         style={styles.container}
-        onPress={() => console.log(item.item)}
+        onPress={() => setModalVisible(true)}
       >
         <View>
           <Text style={styles.title}>{item.item.name}</Text>
@@ -29,6 +31,27 @@ const Card = (props) => {
           <Text style={styles.sideText}>{item.item.hasOwner}</Text>
         </View>
       </TouchableOpacity>
+
+      <Modal
+        visible={modalVisible}
+        presentationStyle="pageSheet"
+        animationType="slide"
+      >
+        <View style={styles.modalContainer}>
+          <Image
+            source={{ uri: item.item.imageUrl }}
+            style={{ height: 300, width: 300, borderRadius: 20 }}
+            resizeMode="contain"
+          />
+          <Text style={styles.title}>{item.item.name}</Text>
+
+          <View style={{ marginVertical: 20 }}>
+            <Text style={styles.description}>{item.item.description}</Text>
+          </View>
+
+          <Button title="CLOSE" onPress={() => setModalVisible(false)} />
+        </View>
+      </Modal>
     </>
   );
 };
@@ -57,9 +80,16 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     flex: 1,
-    backgroundColor: "yellow",
+
+    padding: "1%",
+    alignItems: "center",
   },
   title: {
     fontWeight: "bold",
+  },
+  description: {
+    color: "gray",
+    textAlign: "center",
+    fontSize: 15,
   },
 });
