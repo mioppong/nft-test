@@ -22,7 +22,7 @@ const Card = (props) => {
           <Text style={styles.title}>{item.item.name}</Text>
           <Image
             source={{ uri: item.item.imageUrl }}
-            style={{ height: 150, width: 150 }}
+            style={{ height: 300, width: 300 }}
             resizeMode="contain"
           />
         </View>
@@ -62,6 +62,8 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     padding: "2%",
+    alignItems: "center",
+    justifyContent: "center",
     // height: 150,
     // borderWidth: 0.3,
     width: 300,
