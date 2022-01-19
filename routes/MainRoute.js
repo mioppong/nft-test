@@ -1,0 +1,44 @@
+import * as React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import HomeScreen from "../screens/HomeScreen/HomeScreen";
+import WelcomeScreen from "../screens/Welcome/WelcomeScreen";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+import NftScreen from "../screens/NftsScreen/NftScreen";
+import { SafeAreaView } from "react-native";
+import Profile from "../screens/Profile/Profile";
+
+
+//  in this file, I import all tabs (Tab1,Tab2...), then export the tab component
+//  so it can be used in the MainRoute File
+const Tab = createBottomTabNavigator();
+
+const Tabs = () => (
+  <Tab.Navigator>
+    <Tab.Screen
+      component={HomeScreen}
+      options={{ title: "Explore" }}
+      name="Home"
+    />
+    <Tab.Screen component={Profile} name="Profile" />
+  </Tab.Navigator>
+);
+const Stack = createStackNavigator();
+
+const MainRoute = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator >
+        <Stack.Screen name="Welcome" component={WelcomeScreen} />
+        <Stack.Screen name="Tabs"  component={Tabs} options={{headerShown:false}} />
+        <Stack.Screen
+          name="nfts"
+          component={NftScreen}
+          options={({ route }) => ({ title: route.params.name })}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+export default MainRoute;
