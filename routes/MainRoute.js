@@ -5,12 +5,8 @@ import WelcomeScreen from "../screens/Welcome/WelcomeScreen";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import NftScreen from "../screens/NftsScreen/NftScreen";
-import { SafeAreaView } from "react-native";
 import Profile from "../screens/Profile/Profile";
 
-
-//  in this file, I import all tabs (Tab1,Tab2...), then export the tab component
-//  so it can be used in the MainRoute File
 const Tab = createBottomTabNavigator();
 
 const Tabs = () => (
